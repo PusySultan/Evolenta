@@ -16,13 +16,12 @@ public class Calculator
         try
         {
             resulte = operation.getResulte(a, b);
+            System.out.println(resulte);
         }
         catch (Exception ex)
         {
             System.out.println(ex.getMessage());
             return;
         }
-
-        System.out.println(operation.getResulte(a ,b));
     }
 }
