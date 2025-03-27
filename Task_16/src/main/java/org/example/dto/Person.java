@@ -44,7 +44,7 @@ public class Person
     {
         messages.clear(); // Очищаем список
     }
-
+    
     public void deleteMessages()
     {
         messages.clear();
@@ -137,4 +137,5 @@ public class Person
     {
         this.messages = messages;
     }
+
 }

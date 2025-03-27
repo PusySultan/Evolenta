@@ -37,7 +37,7 @@ public class AppService
     }
 
     @Transactional
-    public ResponseEntity<Person> deleteMeesageToPerson(int personId)
+    public ResponseEntity<Person> deleteMeesagesToPerson(int personId)
     {
         if (personRepository.existsById(personId))
         {
@@ -76,5 +76,21 @@ public class AppService
         }
 
         return  new ResponseEntity<>(person.getMessageById(messageId) ,HttpStatus.OK);
+    }
+
+    @Transactional
+    public ResponseEntity<Person> deleteMessageToPerson(int personId, int messageId)
+    {
+        return personRepository.findById(personId)
+                .map(person ->
+                {
+                    if(person.getMessages().removeIf(m -> m.getId() == messageId))
+                    {
+                        messageRepository.deleteById(messageId);
+                    }
+
+                    return new ResponseEntity<>(person, HttpStatus.OK);
+                })
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }

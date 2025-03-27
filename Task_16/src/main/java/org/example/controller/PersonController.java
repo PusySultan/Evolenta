@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import jakarta.transaction.Transactional;
 import org.example.AppService;
 import org.example.dto.Message;
 import org.example.dto.Person;
@@ -76,9 +77,16 @@ public class PersonController
     }
 
     @DeleteMapping("/person/{id}/message")
-    public ResponseEntity<Person> deleteMessage(@PathVariable int id)
+    public ResponseEntity<Person> deleteMessages(@PathVariable int id)
     {
-        return appService.deleteMeesageToPerson(id);
+        return appService.deleteMeesagesToPerson(id);
+    }
+
+    @DeleteMapping("/person/{person_id}/message/{message_id}")
+    @Transactional
+    public ResponseEntity<Person> deleteMessage(@PathVariable int person_id, @PathVariable int message_id)
+    {
+        return appService.deleteMessageToPerson(person_id, message_id);
     }
 
     @DeleteMapping("/person/{id}")
