@@ -1,5 +1,4 @@
 package org.example;
-
 import org.example.Learner;
 
 import java.time.LocalTime;
@@ -7,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 
 public class StudentWithTimer implements Learner
 {
-    private Learner learner;
+    private final Learner learner;
 
     public StudentWithTimer(Learner learner)
     {
